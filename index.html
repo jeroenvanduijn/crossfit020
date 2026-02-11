@@ -102,7 +102,8 @@
 
     .hero-sub {
       font-size: clamp(1rem, 2vw, 1.3rem);
-      color: var(--gray-light);
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
       margin-top: 1.5rem;
       max-width: 500px;
       line-height: 1.6;
@@ -221,8 +222,23 @@
       border-top: 1px solid var(--dark-border);
     }
 
-    .story-content {
+    .story-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      align-items: start;
       margin-top: 2rem;
+    }
+
+    .story-photo img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      aspect-ratio: 3 / 4;
+      filter: grayscale(20%);
+    }
+
+    .story-content {
     }
 
     .story-content p {
@@ -618,6 +634,16 @@
 
       .hero-logo img { width: 220px; }
 
+      .story-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .story-photo img {
+        max-width: 250px;
+        aspect-ratio: 1 / 1;
+      }
+
       .features-grid { grid-template-columns: 1fr; }
 
       .form-grid { grid-template-columns: 1fr; }
@@ -676,19 +702,24 @@
   <section class="story reveal">
     <div class="section-label">Het verhaal</div>
     <h2 class="section-title">020 verdient een<br>tweede kans</h2>
-    <div class="story-content">
-      <p>
-        Mijn naam is <strong>Maxime Smakman</strong>, eigenaar van CrossFit Naarden. Mijn eigen CrossFit avontuur begon in 2013 bij CrossFit 020. Ik heb mijn carri&egrave;re mede aan 020 te danken. Juist daarom raakt het verdwijnen van deze box mij persoonlijk.
-      </p>
-      <p>
-        Ik wil onderzoeken of er genoeg animo is voor een doorstart. De nieuwe locatie is <strong>slechts 1 minuut rijden</strong> van de oude locatie. Om zoveel mogelijk van 020 te behouden, ben ik bezig de vertrouwde crew weer bij elkaar te brengen.
-      </p>
-      <p>
-        Ik heb inmiddels gesproken met <strong>Fabian, Sven en Joanneke</strong> en hoop hen enthousiast te maken om samen te bouwen aan het voortbestaan van CrossFit 020. De leden die vanaf het begin meebouwen vormen de basis van <strong>020 versie 2.0</strong>.
-      </p>
-      <div class="story-signature">
-        Maxime Smakman
-        <span>Eigenaar CrossFit Naarden</span>
+    <div class="story-layout">
+      <div class="story-photo">
+        <img src="https://i6xeaa6a3uja3cez.public.blob.vercel-storage.com/Maxime-foto-website-2024-e1717051721312.jpg" alt="Maxime Smakman">
+      </div>
+      <div class="story-content">
+        <p>
+          Mijn naam is <strong>Maxime Smakman</strong>, eigenaar van CrossFit Naarden. Mijn eigen CrossFit avontuur begon in 2013 bij CrossFit 020. Ik heb mijn carri&egrave;re mede aan 020 te danken. Juist daarom raakt het verdwijnen van deze box mij persoonlijk.
+        </p>
+        <p>
+          Ik wil onderzoeken of er genoeg animo is voor een doorstart. De nieuwe locatie is <strong>slechts 1 minuut rijden</strong> van de oude locatie. Om zoveel mogelijk van 020 te behouden, ben ik bezig de vertrouwde crew weer bij elkaar te brengen.
+        </p>
+        <p>
+          Ik heb inmiddels gesproken met <strong>Fabian, Sven en Joanneke</strong> en hoop hen enthousiast te maken om samen te bouwen aan het voortbestaan van CrossFit 020. De leden die vanaf het begin meebouwen vormen de basis van <strong>020 versie 2.0</strong>.
+        </p>
+        <div class="story-signature">
+          Maxime Smakman
+          <span>Eigenaar CrossFit Naarden</span>
+        </div>
       </div>
     </div>
   </section>
@@ -727,7 +758,7 @@
       <div class="feature-card">
         <div class="feature-icon">&#x1F465;</div>
         <h3>De crew is terug</h3>
-        <p>Fabian, Sven, Joanneke - de vertrouwde gezichten bouwen mee aan 2.0.</p>
+        <p>De vertrouwde gezichten bouwen mee aan 2.0.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">&#x1F5FA;&#xFE0F;</div>
