@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrossFit 020 — Doorstart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0A0A0A;
+      --dark: #111111;
+      --dark-card: #161616;
+      --dark-border: #222222;
+      --white: #F5F5F5;
+      --accent: #FF4D2A;
+      --accent-glow: rgba(255, 77, 42, 0.15);
+      --accent-hover: #FF6B4A;
+      --gold: #F7CB15;
+      --teal: #0CBABA;
+      --gray: #888888;
+      --gray-light: #AAAAAA;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 2rem;
+      background:
+        linear-gradient(to bottom, rgba(10, 10, 10, 0.4) 0%, rgba(10, 10, 10, 0.6) 50%, rgba(10, 10, 10, 0.95) 100%),
+        url("https://i6xeaa6a3uja3cez.public.blob.vercel-storage.com/hero-background-145.jpg") center center / cover no-repeat;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(255, 77, 42, 0.3);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-badge .dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+
+    .hero h1 .outline {
+      -webkit-text-stroke: 2px var(--white);
+      color: transparent;
+    }
+
+    .hero h1 .accent { color: var(--accent); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--gray-light);
+      margin-top: 1.5rem;
+      max-width: 500px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 16px 36px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(255, 77, 42, 0.3);
+    }
+
+    .btn-primary .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--gray);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: fadeUp 0.8s ease 0.5s both;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollBounce 2s ease infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50% { transform: scaleY(0.5); opacity: 0.3; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== SECTION STYLES ===== */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-text {
+      color: var(--gray-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      max-width: 650px;
+    }
+
+    /* ===== STORY SECTION ===== */
+    .story {
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .story-content {
+      margin-top: 2rem;
+    }
+
+    .story-content p {
+      color: var(--gray-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .story-content strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .story-signature {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--dark-border);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .story-signature span {
+      display: block;
+      color: var(--gray);
+      font-weight: 400;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    /* ===== FEATURES ===== */
+    .features {
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card:hover {
+      border-color: rgba(255, 77, 42, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .feature-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ===== LIFETIME HIGHLIGHT ===== */
+    .lifetime {
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .lifetime-box {
+      background: linear-gradient(135deg, rgba(247, 203, 21, 0.08), rgba(255, 77, 42, 0.08));
+      border: 1px solid rgba(247, 203, 21, 0.2);
+      border-radius: 12px;
+      padding: 3rem;
+      margin-top: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lifetime-box::after {
+      content: 'LIFETIME';
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6rem;
+      color: rgba(247, 203, 21, 0.06);
+      pointer-events: none;
+    }
+
+    .lifetime-box .price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .lifetime-box .price span {
+      font-size: 1.5rem;
+      color: var(--gray);
+    }
+
+    .lifetime-box .savings {
+      color: var(--gray-light);
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .lifetime-perks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .perk {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-size: 0.95rem;
+    }
+
+    .perk-check {
+      width: 20px; height: 20px;
+      background: rgba(247, 203, 21, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+      font-size: 0.7rem;
+    }
+
+    .lifetime-limit {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(247, 203, 21, 0.15);
+      color: var(--gray);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lifetime-limit .fire { color: var(--accent); }
+
+    /* ===== FORM SECTION ===== */
+    .form-section {
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .form-wrapper {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 12px;
+      padding: 3rem;
+      margin-top: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gray-light);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .form-group input {
+      background: var(--dark);
+      border: 1px solid var(--dark-border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .form-group input::placeholder {
+      color: #444;
+    }
+
+    .form-group input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .form-submit {
+      margin-top: 1.5rem;
+    }
+
+    .form-submit .btn-primary {
+      width: 100%;
+      justify-content: center;
+      padding: 18px;
+      font-size: 1.05rem;
+    }
+
+    .form-note {
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    /* ===== COUNTER ===== */
+    .counter-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--dark-border);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .counter-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 10vw, 8rem);
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .counter-label {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-top: 0.5rem;
+    }
+
+    .counter-bar {
+      max-width: 400px;
+      margin: 2rem auto 0;
+      background: var(--dark-card);
+      border-radius: 100px;
+      height: 8px;
+      overflow: hidden;
+    }
+
+    .counter-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      border-radius: 100px;
+      width: 0%;
+      animation: fillBar 2s ease 0.5s forwards;
+    }
+
+    @keyframes fillBar {
+      to { width: 45%; }
+    }
+
+    .counter-target {
+      color: var(--gray);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== LOCATIONS ===== */
+    .locations {
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .location-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .location-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-2px);
+    }
+
+    .location-card .city {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .location-card .detail {
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    .location-card .tag {
+      display: inline-block;
+      background: rgba(12, 186, 186, 0.1);
+      color: var(--teal);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-top: 0.8rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--dark-border);
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-logo .accent { color: var(--accent); }
+
+    .footer-contact {
+      margin-top: 1rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .footer-contact a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer-contact a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      margin-top: 2rem;
+      color: #333;
+      font-size: 0.75rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      section { padding: 4rem 1.5rem; }
+
+      .features-grid { grid-template-columns: 1fr; }
+
+      .form-grid { grid-template-columns: 1fr; }
+
+      .lifetime-perks { grid-template-columns: 1fr; }
+
+      .lifetime-box { padding: 2rem; }
+
+      .locations-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lifetime-box::after { display: none; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Doorstart 2025
+    </div>
+    <h1>
+      CROSSFIT<br>
+      <span class="outline">0</span><span class="accent">20</span>
+    </h1>
+    <p class="hero-sub">
+      020 mag niet verdwijnen. Wij geven deze community een nieuw thuis, met nieuw materiaal en dezelfde vertrouwde energie.
+    </p>
+    <div class="hero-cta">
+      <a href="#aanmelden" class="btn-primary">
+        Word Lifetime Member
+        <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story reveal">
+    <div class="section-label">Het verhaal</div>
+    <h2 class="section-title">020 verdient een<br>tweede kans</h2>
+    <div class="story-content">
+      <p>
+        Mijn naam is <strong>Maxime Smakman</strong>, eigenaar van CrossFit Naarden. Mijn eigen CrossFit avontuur begon in 2013 bij CrossFit 020. Ik heb mijn carri&egrave;re mede aan 020 te danken. Juist daarom raakt het verdwijnen van deze box mij persoonlijk.
+      </p>
+      <p>
+        Ik wil onderzoeken of er genoeg animo is voor een doorstart. De nieuwe locatie is <strong>slechts 1 minuut rijden</strong> van de oude locatie. Om zoveel mogelijk van 020 te behouden, ben ik bezig de vertrouwde crew weer bij elkaar te brengen.
+      </p>
+      <p>
+        Ik heb inmiddels gesproken met <strong>Fabian, Sven en Joanneke</strong> en hoop hen enthousiast te maken om samen te bouwen aan het voortbestaan van CrossFit 020. De leden die vanaf het begin meebouwen vormen de basis van <strong>020 versie 2.0</strong>.
+      </p>
+      <div class="story-signature">
+        Maxime Smakman
+        <span>Eigenaar CrossFit Naarden</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTER -->
+  <div class="counter-section reveal">
+    <div class="section-label">Samen verder</div>
+    <div class="counter-number" id="counter">0</div>
+    <div class="counter-label">aanmeldingen</div>
+    <div class="counter-bar">
+      <div class="counter-fill"></div>
+    </div>
+    <div class="counter-target">Doel: 100 Lifetime Members</div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features reveal">
+    <div class="section-label">Wat je krijgt</div>
+    <h2 class="section-title">Alles nieuw,<br>dezelfde spirit</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F4CD;</div>
+        <h3>Nieuwe locatie</h3>
+        <p>Op slechts 1 minuut rijden van de oude box. Vertrouwd gebied, fris begin.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F3CB;&#xFE0F;</div>
+        <h3>Nieuw materiaal</h3>
+        <p>Volledig nieuwe apparatuur en inrichting. Alles top-of-the-line.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F4CB;</div>
+        <h3>Verbeterd rooster</h3>
+        <p>Meer lessen op betere tijden, afgestemd op wat jullie nodig hebben.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F465;</div>
+        <h3>De crew is terug</h3>
+        <p>Fabian, Sven, Joanneke - de vertrouwde gezichten bouwen mee aan 2.0.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F5FA;&#xFE0F;</div>
+        <h3>3 Locaties</h3>
+        <p>Train op 3 locaties: Amsterdam Z-O, Naarden en Amstelveen.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F455;</div>
+        <h3>Lifetime Member T-Shirt</h3>
+        <p>Exclusief shirt voor iedereen die vanaf dag &eacute;&eacute;n meebouwt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIFETIME -->
+  <section class="lifetime reveal">
+    <div class="section-label">Exclusief aanbod</div>
+    <h2 class="section-title">Lifetime Member<br>voordeel</h2>
+    <div class="lifetime-box">
+      <div class="price">&euro;15,- <span>korting p/m</span></div>
+      <div class="savings">Bespaar &euro;180,- per jaar. Elk jaar. Voor altijd.</div>
+      <div class="lifetime-perks">
+        <div class="perk">
+          <div class="perk-check">&#x2713;</div>
+          Permanente korting op contributie
+        </div>
+        <div class="perk">
+          <div class="perk-check">&#x2713;</div>
+          Trainen op 3 locaties
+        </div>
+        <div class="perk">
+          <div class="perk-check">&#x2713;</div>
+          Exclusief Lifetime Member T-shirt
+        </div>
+        <div class="perk">
+          <div class="perk-check">&#x2713;</div>
+          Meebouwen aan 020 v2.0
+        </div>
+      </div>
+      <div class="lifetime-limit">
+        <span class="fire">&#x1F525;</span>
+        Beperkt tot de eerste 100 aanmeldingen
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="locations reveal">
+    <div class="section-label">Waar je kunt trainen</div>
+    <h2 class="section-title">3 Locaties,<br>1 Membership</h2>
+    <div class="locations-grid">
+      <div class="location-card">
+        <div class="city">Amsterdam Z-O</div>
+        <div class="detail">Nieuwe locatie CrossFit 020</div>
+        <div class="tag">Nieuw</div>
+      </div>
+      <div class="location-card">
+        <div class="city">Naarden</div>
+        <div class="detail">CrossFit Naarden</div>
+        <div class="tag">Bestaand</div>
+      </div>
+      <div class="location-card">
+        <div class="city">Amstelveen</div>
+        <div class="detail">CrossFit Amstelveen</div>
+        <div class="tag">Bestaand</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="form-section reveal" id="aanmelden">
+    <div class="section-label">Doe mee</div>
+    <h2 class="section-title">Word Lifetime<br>Member</h2>
+    <p class="section-text" style="margin-bottom: 0.5rem;">Vul je gegevens in en ontvang direct alle informatie over de doorstart.</p>
+    <div class="form-wrapper">
+      <form id="signup-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Voornaam</label>
+            <input type="text" name="voornaam" placeholder="Jouw voornaam" required>
+          </div>
+          <div class="form-group">
+            <label>Achternaam</label>
+            <input type="text" name="achternaam" placeholder="Jouw achternaam" required>
+          </div>
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" name="email" placeholder="jouw@email.nl" required>
+          </div>
+          <div class="form-group">
+            <label>Telefoon</label>
+            <input type="tel" name="telefoon" placeholder="06 - 12345678" required>
+          </div>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn-primary">
+            Ontvang alle informatie
+            <span class="arrow">&rarr;</span>
+          </button>
+        </div>
+        <div class="form-note">
+          Je ontvangt direct alle details over de doorstart
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">CROSSFIT <span class="accent">020</span></div>
+    <div class="footer-contact">
+      Vragen? Mail naar <a href="mailto:maxime@crossfitnaarden.nl">maxime@crossfitnaarden.nl</a>
+    </div>
+    <div class="footer-copy">
+      &copy; 2025 CrossFit 020 &mdash; Een initiatief van CrossFit Naarden
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Counter animation
+    const counterEl = document.getElementById('counter');
+    let counted = false;
+    const counterObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !counted) {
+        counted = true;
+        let n = 0;
+        const target = 45;
+        const interval = setInterval(() => {
+          n++;
+          counterEl.textContent = n;
+          if (n >= target) clearInterval(interval);
+        }, 40);
+      }
+    });
+    counterObserver.observe(counterEl);
+
+    // Form handling
+    document.getElementById('signup-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-primary');
+      btn.innerHTML = '&#x2713; Verstuurd!';
+      btn.style.background = '#0CBABA';
+      setTimeout(() => {
+        btn.innerHTML = 'Ontvang alle informatie <span class="arrow">&rarr;</span>';
+        btn.style.background = '';
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>
