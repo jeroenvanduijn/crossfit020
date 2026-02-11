@@ -36,6 +36,8 @@
     /* ===== HERO ===== */
     .hero {
       min-height: 100vh;
+      width: 100%;
+      max-width: none;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -44,7 +46,7 @@
       position: relative;
       padding: 2rem;
       background:
-        linear-gradient(to bottom, rgba(10, 10, 10, 0.4) 0%, rgba(10, 10, 10, 0.6) 50%, rgba(10, 10, 10, 0.95) 100%),
+        linear-gradient(to bottom, rgba(10, 10, 10, 0.15) 0%, rgba(10, 10, 10, 0.3) 60%, rgba(10, 10, 10, 0.95) 100%),
         url("https://i6xeaa6a3uja3cez.public.blob.vercel-storage.com/hero-background-145.jpg") center center / cover no-repeat;
     }
 
@@ -86,22 +88,17 @@
       50% { opacity: 0.4; }
     }
 
-    .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 12vw, 10rem);
-      line-height: 0.9;
-      letter-spacing: -0.02em;
+    .hero-logo {
       position: relative;
       z-index: 1;
       animation: fadeUp 0.8s ease 0.1s both;
     }
 
-    .hero h1 .outline {
-      -webkit-text-stroke: 2px var(--white);
-      color: transparent;
+    .hero-logo img {
+      width: clamp(250px, 35vw, 450px);
+      height: auto;
+      filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.5));
     }
-
-    .hero h1 .accent { color: var(--accent); }
 
     .hero-sub {
       font-size: clamp(1rem, 2vw, 1.3rem);
@@ -192,7 +189,7 @@
     /* ===== SECTION STYLES ===== */
     section {
       padding: 6rem 2rem;
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
@@ -216,7 +213,7 @@
       color: var(--gray-light);
       line-height: 1.8;
       font-size: 1.05rem;
-      max-width: 650px;
+      max-width: 750px;
     }
 
     /* ===== STORY SECTION ===== */
@@ -483,7 +480,7 @@
       text-align: center;
       padding: 4rem 2rem;
       border-top: 1px solid var(--dark-border);
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
@@ -582,7 +579,7 @@
       border-top: 1px solid var(--dark-border);
       padding: 3rem 2rem;
       text-align: center;
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
@@ -618,6 +615,8 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       section { padding: 4rem 1.5rem; }
+
+      .hero-logo img { width: 220px; }
 
       .features-grid { grid-template-columns: 1fr; }
 
@@ -655,10 +654,9 @@
       <span class="dot"></span>
       Doorstart 2025
     </div>
-    <h1>
-      CROSSFIT<br>
-      <span class="outline">0</span><span class="accent">20</span>
-    </h1>
+    <div class="hero-logo">
+      <img src="https://i6xeaa6a3uja3cez.public.blob.vercel-storage.com/020%20Crossfit%20logo%20-%20PNG%20Transparant%20%281%29.png" alt="CrossFit 020">
+    </div>
     <p class="hero-sub">
       020 mag niet verdwijnen. Wij geven deze community een nieuw thuis, met nieuw materiaal en dezelfde vertrouwde energie.
     </p>
